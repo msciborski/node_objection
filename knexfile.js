@@ -8,5 +8,8 @@ module.exports = {
     migrations: {
       directory: './knex/migrations',
     },
+    seeds: {
+      directory: './knex/seeds',
+    },
   },
 };

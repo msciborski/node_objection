@@ -1,6 +1,7 @@
+const tableName = 'cars';
 
 exports.up = (knex, Promise) => Promise.all([
-  knex.schema.createTable('cars', (table) => {
+  knex.schema.createTable(tableName, (table) => {
     table.increments('id').primary();
     table.string('brand');
     table.dateTime('year');
@@ -14,5 +15,5 @@ exports.up = (knex, Promise) => Promise.all([
 ]);
 
 exports.down = (knex, Promise) => Promise.all([
-  knex.schema.dropTableIfExists('cars'),
+  knex.schema.dropTableIfExists(tableName),
 ]);
