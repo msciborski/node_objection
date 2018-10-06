@@ -4,23 +4,27 @@ const Car = require('./car');
 
 Model.knex(knex);
 
-class Person extends Model {
+class Garage extends Model {
   static get tableName() {
-    return 'persons';
+    return 'garages';
   }
 
   static get relationMappings() {
     return {
       cars: {
-        relation: Model.HasManyRelation,
+        relation: Model.ManyToManyRelation,
         modelClass: Car,
         join: {
-          from: 'persons.id',
-          to: 'cars.ownerId',
+          from: 'garages.id',
+          through: {
+            from: 'cars_garages.garagesId',
+            to: 'cars_garages.carsId',
+          },
         },
+        to: 'cars.id',
       },
     };
   }
 }
 
-module.exports = Person;
+module.exports = Garage;
